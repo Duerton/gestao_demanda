@@ -16,7 +16,7 @@ const Header = () => {
           <Grid size={1} minHeight={70} minWidth={70} sx={{backgroundColor: '6EADE1'}}>
             <Image src={'/feito.png'} width={70} height={70} alt='Logo'></Image>
           </Grid>
-          <Grid container spacing={0} size={8} sx={{backgroundColor: '6EADE1'}} display="flex" justifyContent="left" alignItems="center">
+          <Grid size={8} display="flex" justifyContent="left" alignItems="center">
             <Grid container spacing={0}>
               <Grid size={12}>
               <Typography variant="h6" sx={{color: 'white'}}>
@@ -30,7 +30,7 @@ const Header = () => {
               </Grid>
             </Grid>
           </Grid>
-            <Grid  display="flex" size="grow" justifyContent="flex-end" alignItems="center">
+            <Grid display="flex" size="grow" justifyContent="flex-end" alignItems="center">
               <Typography variant="subtitle2" sx={{color: 'white'}}>
                 <div>Olá, Anonimo</div>
               </Typography>
