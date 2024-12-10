@@ -8,6 +8,12 @@ const Cadastro = () => {
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Container>
       <Grid container spacing={2}>
+        <Grid component="div" size={6}>
+          <TextField fullWidth label='Nº da demanda' />
+        </Grid>
+        <Grid component="div" size={6}>
+          <TextField fullWidth label='Data de registro' />
+        </Grid>
         <Grid size={12} component="div">
           <TextField fullWidth label='Título' />
         </Grid>
