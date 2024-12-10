@@ -1,9 +1,8 @@
+import Cadastro from "./cadastro/cadastro";
 
 
 export default function Home() {
   return (
-    <div>
-      Olá mundo
-    </div>
+    <Cadastro/>
   );
 }

@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid2';
 import { Avatar, Box, IconButton, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import SettingsIcon from '@mui/icons-material/Settings'
+import MenuButton from './MenuButton';
 
 
 const Header = () => {
@@ -43,7 +44,11 @@ const Header = () => {
               </IconButton>
             </Grid>
         </Grid>
+        <MenuButton>
+        
+        </MenuButton>
       </Box>
+      
   );
 };
 
