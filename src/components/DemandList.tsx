@@ -94,7 +94,6 @@ interface Data {
   numero: number;
   titulo: string;
   estado: string;
-  prioridade: string;
 }
 
 function createData(
