@@ -1,10 +1,11 @@
+
 import Cadastro from "./cadastro/cadastro";
 import Inicio from "./inicio/inicio";
-import Lista from "./lista/lista";
+import DemandList from "@/components/DemandList";
 
 
 export default function Home() {
   return (
-    <Lista/>
+    <DemandList/>
   );
 }
