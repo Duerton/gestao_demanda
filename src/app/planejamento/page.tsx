@@ -1,8 +1,8 @@
 import FooterCadastro from "@/app/cadastro/components/FooterCadastro";
 import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
-import InputFileUpload from "./components/UploadFiles";
 import FileUploadAndList from "./components/FileList";
+import CompanyList from "./components/CompanyList";
 // import { DateField } from "@mui/x-date-pickers";
 
 
@@ -122,7 +122,7 @@ const Planejamento = () => {
           <FileUploadAndList/>
         </Grid>
         <Grid component="div" size={6}>
-          <FileUploadAndList/>
+          <CompanyList/>
         </Grid>
       </Grid>
       
