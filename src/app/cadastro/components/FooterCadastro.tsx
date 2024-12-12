@@ -3,7 +3,7 @@ import { Box, Button } from '@mui/material';
 
 const FooterCadastro: React.FC = () => {
   return (
-    <Box display="flex" justifyContent="left" mt={2}>
+    <Box display="flex" justifyContent="left" mt={12} mb={12}>
       <Button variant="contained" color="primary" sx={{ mx: 1, marginLeft : '0px' }}>
         Salvar
       </Button>
