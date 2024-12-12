@@ -121,7 +121,7 @@ const rows = [
   createData(20250100013, 20250100013, 'Primeira demanda', 'Avaliação'),
 ];
 
-export default function DemandList() {
+export default function ListaDemanda() {
 
   const [filterModel, setFilterModel] = useState<GridFilterModel>({
     items: [],
