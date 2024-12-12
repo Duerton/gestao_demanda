@@ -6,7 +6,7 @@ import CompanyList from "../planejamento/components/CompanyList";
 // import { DateField } from "@mui/x-date-pickers";
 
 
-const Solicitacao = () => {
+const Avaliacao = () => {
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Container>
@@ -125,10 +125,10 @@ const Solicitacao = () => {
           <CompanyList/>
         </Grid>
         <Grid component="div" size={6}>
-          <TextField fullWidth label='Orçamento utilizado' />
+          <TextField fullWidth disabled label='Orçamento utilizado' />
         </Grid>
         <Grid component="div" size={6}>
-          <TextField fullWidth label='Etapas concluídas' />
+          <TextField fullWidth disabled label='Etapas concluídas' />
         </Grid>
         <Grid component="div" size={6}>
           <FileUploadAndList label={'Imagens'}/>
@@ -137,11 +137,12 @@ const Solicitacao = () => {
           <FileUploadAndList label={'Relatórios'}/>
         </Grid>
         <Grid component="div" size={12}>
-          <TextField fullWidth label='Motivo da interrupção' />
+          <TextField fullWidth disabled label='Motivo da interrupção' />
         </Grid>
         <Grid component="div" size={12}>
           <TextField 
             fullWidth 
+            disabled
             multiline
             rows={4}
             label='Justificativa' />
@@ -153,4 +154,4 @@ const Solicitacao = () => {
   )
 }
   
-export default Solicitacao;
+export default Avaliacao;
