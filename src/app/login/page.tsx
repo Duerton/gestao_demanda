@@ -124,7 +124,7 @@ export default function SignIn() {
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Sign in
+            Login
           </Typography>
           <Box
             component="form"
@@ -145,7 +145,7 @@ export default function SignIn() {
                 id="email"
                 type="email"
                 name="email"
-                placeholder="your@email.com"
+                placeholder="seu@email.com"
                 autoComplete="email"
                 autoFocus
                 required
@@ -155,7 +155,7 @@ export default function SignIn() {
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password">Senha</FormLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
@@ -173,7 +173,7 @@ export default function SignIn() {
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Manter-me conectado"
             />
             <ForgotPassword open={open} handleClose={handleClose} />
             <Button
@@ -182,7 +182,7 @@ export default function SignIn() {
               variant="contained"
               onClick={validateInputs}
             >
-              Sign in
+              Login
             </Button>
             <Link
               component="button"
@@ -191,7 +191,7 @@ export default function SignIn() {
               variant="body2"
               sx={{ alignSelf: 'center' }}
             >
-              Forgot your password?
+              Esqueceu sua senha?
             </Link>
           </Box>
         </Card>
