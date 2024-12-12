@@ -1,11 +1,12 @@
 
-import Cadastro from "./cadastro/cadastro";
-import Inicio from "./inicio/inicio";
-import DemandList from "@/components/DemandList";
+import ListaDemanda from "@/app/listademanda/page";
+import Cadastro from "./cadastro/page";
+import Inicio from "./inicio/page";
+import DemandList from "@/app/listademanda/page";
 
 
 export default function Home() {
   return (
-    <DemandList/>
+    <ListaDemanda/>
   );
 }
