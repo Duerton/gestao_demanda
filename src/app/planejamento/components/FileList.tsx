@@ -6,7 +6,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
 import InputFileUpload from './UploadFiles';
 
-const FileUploadAndList: React.FC = () => {
+interface ScrollableListProps { label: string; }
+
+const FileUploadAndList: React.FC<ScrollableListProps> = ({label}) => {
 
   const files = [{name: 'primeiro.pdf'}, {name: 'segundo.pdf'},{name: 'primeiro.pdf'}, {name: 'segundo.pdf'},{name: 'primeiro.pdf'}, {name: 'segundo.pdf'},{name: 'primeiro.pdf'}, {name: 'segundo.pdf'},{name: 'primeiro.pdf'}, {name: 'segundo.pdf'},{name: 'primeiro.pdf'}, {name: 'segundo.pdf'},{name: 'primeiro.pdf'}, {name: 'segundo.pdf'}]
 
@@ -31,7 +33,7 @@ const FileUploadAndList: React.FC = () => {
         <Box>
 
           <Typography variant="subtitle2" gutterBottom>
-            Arquivos
+            {label}
           </Typography>
           <List dense sx={{maxHeight: 400, overflowY: 'auto',}}>
             {files.map((file, index) => (

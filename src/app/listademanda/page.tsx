@@ -5,7 +5,7 @@ import { DataGrid, GridColDef, GridFilterModel } from '@mui/x-data-grid';
 import React, { useState } from 'react';
 import OutboxIcon from '@mui/icons-material/Outbox';
 import EditIcon from '@mui/icons-material/Edit'
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import GavelIcon from '@mui/icons-material/Gavel';
 
 const handleDelete = (id: number) => { 
   console.log(`Delete item with id: ${id}`); 
@@ -76,7 +76,7 @@ const columns: GridColDef[] = [
     renderCell: (params) => (
       <>
         <IconButton onClick={() => handleEdit(params.row.numero)} aria-label="edit">
-          <VisibilityIcon />
+          <GavelIcon />
         </IconButton>
         <IconButton onClick={() => handleDelete(params.row.numero)} aria-label="delete">
           <EditIcon />

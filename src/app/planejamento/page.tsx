@@ -119,7 +119,7 @@ const Planejamento = () => {
           <TextField fullWidth label='Responsável técnico' />
         </Grid>
         <Grid component="div" size={6}>
-          <FileUploadAndList/>
+          <FileUploadAndList label={'Arquivo'}/>
         </Grid>
         <Grid component="div" size={6}>
           <CompanyList/>
