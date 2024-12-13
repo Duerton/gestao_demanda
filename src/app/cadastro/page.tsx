@@ -1,10 +1,26 @@
-import FooterCadastro from "@/app/cadastro/components/FooterCadastro";
+import FooterDefault from "@/components/FooterDefault";
 import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 // import { DateField } from "@mui/x-date-pickers";
 
 
 const Cadastro = () => {
+
+  const buttons = [
+    { name:'Despachar', 
+      color: '#6EADE1',
+      msg: 'Ao despachar a demanda, será enviado um memmorando para o órgão responsável iniciar o planejamento'
+    },
+    { name:'Encerrar', 
+      color: '#AF3D36',
+      msg: 'Ao encerrar a demanda não será mais possível executar nenhuma ação sobre ela'
+    },
+    { name:'Repriorizar',
+      color: '#625B71',
+       msg: 'Ao repriorizar uma demanda, ela terá sua prioridade alterada e retornará para a lista de demandas enquanto aguarda nova análise'
+    }
+  ]
+
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Container>
@@ -98,7 +114,7 @@ const Cadastro = () => {
             label='Descrição' />
         </Grid>
       </Grid>
-      <FooterCadastro/>
+      <FooterDefault buttons={buttons}/>
     </Container>
     // </LocalizationProvider>
   )
