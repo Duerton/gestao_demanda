@@ -1,4 +1,5 @@
 import FooterDefault from "@/components/FooterDefault";
+import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR, DEFAULT_THIRD_BUTTON_COLOR } from "@/utils/constants";
 import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 // import { DateField } from "@mui/x-date-pickers";
@@ -8,15 +9,15 @@ const Cadastro = () => {
 
   const buttons = [
     { name:'Despachar', 
-      color: '#6EADE1',
+      color: DEFAULT_FIRST_BUTTON_COLOR,
       msg: 'Ao despachar a demanda, será enviado um memmorando para o órgão responsável iniciar o planejamento'
     },
     { name:'Encerrar', 
-      color: '#AF3D36',
+      color: DEFAULT_SECOND_BUTTON_COLOR,
       msg: 'Ao encerrar a demanda não será mais possível executar nenhuma ação sobre ela'
     },
     { name:'Repriorizar',
-      color: '#625B71',
+      color: DEFAULT_THIRD_BUTTON_COLOR,
        msg: 'Ao repriorizar uma demanda, ela terá sua prioridade alterada e retornará para a lista de demandas enquanto aguarda nova análise'
     }
   ]
