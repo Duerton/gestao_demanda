@@ -1,12 +1,30 @@
-import FooterCadastro from "@/app/cadastro/components/FooterCadastro";
 import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import FileUploadAndList from "../planejamento/components/FileList";
 import CompanyList from "../planejamento/components/CompanyList";
+import FooterDefault from "@/components/FooterDefault";
+import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR, DEFAULT_THIRD_BUTTON_COLOR } from "@/utils/constants";
 // import { DateField } from "@mui/x-date-pickers";
 
 
 const Planejamento = () => {
+
+  const buttons = [
+    { name:'Concluir execução', 
+      color: DEFAULT_FIRST_BUTTON_COLOR,
+      msg: 'Ao concluir a execução da demanda, ela será devolvida para a secretaria de gestão avaliar os resultados obtidos.'
+    },
+    { name:'Solicitar interrupção', 
+      color: DEFAULT_SECOND_BUTTON_COLOR,
+      msg: ''
+    },
+    { name:'Solicitar replanejamento',
+      color: DEFAULT_THIRD_BUTTON_COLOR,
+      msg: ''
+    }
+  ]
+
+
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Container>
@@ -138,7 +156,7 @@ const Planejamento = () => {
         </Grid>
       </Grid>
       
-      <FooterCadastro/>
+      <FooterDefault buttons={buttons}/>
     </Container>
     // </LocalizationProvider>
   )
