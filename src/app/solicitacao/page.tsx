@@ -1,12 +1,28 @@
-import FooterCadastro from "@/app/cadastro/components/FooterCadastro";
 import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import FileUploadAndList from "../planejamento/components/FileList";
 import CompanyList from "../planejamento/components/CompanyList";
+import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR } from "@/utils/constants";
+import FooterDefault from "@/components/FooterDefault";
 // import { DateField } from "@mui/x-date-pickers";
 
-
 const Solicitacao = () => {
+  
+  const buttons = [
+    { name:'Autorizar', 
+      color: DEFAULT_FIRST_BUTTON_COLOR,
+      msg: 'Ao autorizar o encerramento da demanda, o fluxo será interrompido e não será possível retomar a execução.'
+    },
+    { name:'Rejeitar', 
+      color: DEFAULT_SECOND_BUTTON_COLOR,
+      msg: 'Ao rejeitar o encerramento da demanda, ela será devolvida ao órgão responsável para que continue a execução da mesma.'
+    },
+    // { name:'Solicitar replanejamento',
+    //   color: DEFAULT_THIRD_BUTTON_COLOR,
+    //   msg: 'Ao autorizar o replanejamento da demanda, ela retornará para o órgão responsável elaborar um novo planejamento.'
+    // }
+  ]
+
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Container>
@@ -147,7 +163,7 @@ const Solicitacao = () => {
             label='Justificativa' />
         </Grid>
       </Grid>
-      <FooterCadastro/>
+      <FooterDefault buttons={buttons}/>
     </Container>
     // </LocalizationProvider>
   )
