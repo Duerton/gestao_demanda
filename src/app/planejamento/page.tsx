@@ -1,12 +1,21 @@
-import FooterCadastro from "@/app/cadastro/components/FooterCadastro";
 import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import FileUploadAndList from "./components/FileList";
 import CompanyList from "./components/CompanyList";
+import FooterDefault from "@/components/FooterDefault";
+import { DEFAULT_FIRST_BUTTON_COLOR } from "@/utils/constants";
 // import { DateField } from "@mui/x-date-pickers";
 
 
 const Planejamento = () => {
+  
+  const buttons = [
+    { name:'Enviar planejamento', // ou salvar 
+      color: DEFAULT_FIRST_BUTTON_COLOR,
+      msg: 'Ao concluir a execução da demanda, ela será devolvida para a secretaria de gestão avaliar os resultados obtidos.'
+    },
+  ]
+
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Container>
@@ -126,7 +135,7 @@ const Planejamento = () => {
         </Grid>
       </Grid>
       
-      <FooterCadastro/>
+      <FooterDefault buttons={buttons}/>
     </Container>
     // </LocalizationProvider>
   )
