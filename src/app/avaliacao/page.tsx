@@ -4,25 +4,25 @@ import Grid from '@mui/material/Grid2';
 import FileUploadAndList from "../planejamento/components/FileList";
 import CompanyList from "../planejamento/components/CompanyList";
 import FooterDefault from "@/components/FooterDefault";
-import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR, DEFAULT_THIRD_BUTTON_COLOR } from "@/utils/constants";
+import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR } from "@/utils/constants";
 // import { DateField } from "@mui/x-date-pickers";
 
 
 const Avaliacao = () => {
 
   const buttons = [
-    { name:'Concluir execução', 
+    { name:'Autorizar', 
       color: DEFAULT_FIRST_BUTTON_COLOR,
-      msg: 'Ao concluir a execução da demanda, ela será devolvida para a secretaria de gestão avaliar os resultados obtidos.'
-    },
-    { name:'Solicitar interrupção', 
-      color: DEFAULT_SECOND_BUTTON_COLOR,
       msg: 'Ao autorizar o encerramento da demanda, o fluxo será interrompido e não será possível retomar a execução.'
     },
-    { name:'Solicitar replanejamento',
-      color: DEFAULT_THIRD_BUTTON_COLOR,
-      msg: 'Ao autorizar o replanejamento da demanda, ela retornará para o órgão responsável elaborar um novo planejamento.'
-    }
+    { name:'Rejeitar', 
+      color: DEFAULT_SECOND_BUTTON_COLOR,
+      msg: 'Ao rejeitar o encerramento da demanda, ela será devolvida ao órgão responsável para que continue a execução da mesma.'
+    },
+    // { name:'Solicitar replanejamento',
+    //   color: DEFAULT_THIRD_BUTTON_COLOR,
+    //   msg: 'Ao autorizar o replanejamento da demanda, ela retornará para o órgão responsável elaborar um novo planejamento.'
+    // }
   ]
 
   return (
