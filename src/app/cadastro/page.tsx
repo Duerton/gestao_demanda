@@ -1,11 +1,36 @@
 import FooterDefault from "@/components/FooterDefault";
 import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR, DEFAULT_THIRD_BUTTON_COLOR } from "@/utils/constants";
-import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
+import { revalidateTag } from "next/cache";
 // import { DateField } from "@mui/x-date-pickers";
 
+async function Cadastro() {
 
-const Cadastro = () => {
+  const response = await fetch('http://localhost:3333/demanda/1', {
+    next: {
+      tags: ['get-cadastro']
+    }
+  })
+  const data = await response.json()
+
+  console.log(data.titulo)
+
+  async function handleSubmit(form: FormData) {
+    "use server"
+    
+    const titulo = form.get('titulo')
+    
+    await fetch('http://localhost:3333/demanda/1', {
+      method: 'PUT',
+      body: JSON.stringify({  
+        titulo,
+      })
+    })
+
+    revalidateTag('get-cadastro')
+
+  }
 
   const buttons = [
     { name:'Despachar', 
@@ -24,16 +49,16 @@ const Cadastro = () => {
 
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <Container>
+    <form action={handleSubmit}>
       <Grid container spacing={2}>
         <Grid size={6}>
-          <TextField fullWidth label='Nº da demanda' />
+          <TextField fullWidth name="num_demanda" label='Nº da demanda' />
         </Grid>
         <Grid component="div" size={6}>
           <TextField fullWidth label='Data de registro' />
         </Grid>
         <Grid size={12} component="div">
-          <TextField fullWidth label='Título' />
+          <TextField fullWidth name="titulo" label='Título' defaultValue={data.titulo}/>
         </Grid>
         <Grid component="div" size={4}>
           <Box sx={{ minWidth: 120}}>
@@ -115,8 +140,11 @@ const Cadastro = () => {
             label='Descrição' />
         </Grid>
       </Grid>
+      <Button type="submit">
+        TEste
+      </Button>
       <FooterDefault buttons={buttons}/>
-    </Container>
+    </form>
     // </LocalizationProvider>
   )
 }
