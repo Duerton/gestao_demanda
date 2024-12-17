@@ -1,10 +1,11 @@
-import { List, ListItemButton, ListItemText, Menu, MenuItem } from "@mui/material";
+import { Link, List, ListItemButton, ListItemText, Menu, MenuItem } from "@mui/material";
+
 import React, { useState } from "react";
 
 const options = [
-  'Inicio',
-  'Análise de dados',
-  'Gestão de demandas'
+  { pagina: 'Inicio', href: '/inicio' },
+  { pagina: 'Cadastro de demandas', href: '/cadastro'},
+  { pagina: 'Lista de demandas', href: '/listademanda'}
 ];
 
 const MenuButton = () => {
@@ -42,7 +43,7 @@ const MenuButton = () => {
           onClick={handleClickListItem}
         >
           <ListItemText
-            primary={options[selectedIndex]}
+            primary={options[selectedIndex].pagina}
           />
         </ListItemButton>
       </List>
@@ -56,14 +57,19 @@ const MenuButton = () => {
           role: 'listbox',
         }}
         >
-        {options.map((option, index) => (
-          <MenuItem
-          key={option}
-          selected={index === selectedIndex}
-          onClick={(event) => handleMenuItemClick(event, index)}
+        {options.map((option) => (
+          <Link 
+            key={option.pagina} 
+            href={option.href}
+            underline="none"
+            color="black"
           >
-            {option}
-          </MenuItem>
+            <MenuItem
+            onClick={handleClose}
+            >
+              {option.pagina}
+            </MenuItem>
+          </Link>
         ))}
       </Menu> 
     </div>
