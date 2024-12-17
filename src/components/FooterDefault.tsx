@@ -33,6 +33,7 @@ const FooterDefault: React.FC<FooterDefault> = ({buttons}) => {
     <Box display="flex" justifyContent="left" mt={3} mb={3}>
       <Button 
         variant="contained"
+        type='submit'
         sx={{ mx: 1, marginLeft : '0px', backgroundColor: buttons[0].color }}
       >
         {buttons[0].name}

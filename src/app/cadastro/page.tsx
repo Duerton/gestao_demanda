@@ -1,6 +1,6 @@
 import FooterDefault from "@/components/FooterDefault";
 import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR, DEFAULT_THIRD_BUTTON_COLOR } from "@/utils/constants";
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import { revalidateTag } from "next/cache";
 // import { DateField } from "@mui/x-date-pickers";
@@ -14,18 +14,17 @@ async function Cadastro() {
   })
   const data = await response.json()
 
-  console.log(data.titulo)
-
   async function handleSubmit(form: FormData) {
     "use server"
+        
+    const fields = Object.fromEntries(form.entries())
     
-    const titulo = form.get('titulo')
+    console.log(fields)
     
     await fetch('http://localhost:3333/demanda/1', {
       method: 'PUT',
-      body: JSON.stringify({  
-        titulo,
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fields)
     })
 
     revalidateTag('get-cadastro')
@@ -52,22 +51,38 @@ async function Cadastro() {
     <form action={handleSubmit}>
       <Grid container spacing={2}>
         <Grid size={6}>
-          <TextField fullWidth name="num_demanda" label='Nº da demanda' />
+          <TextField 
+            fullWidth 
+            name="num_demanda" 
+            defaultValue={data.num_demanda}
+            label='Nº da demanda' 
+          />
         </Grid>
         <Grid component="div" size={6}>
-          <TextField fullWidth label='Data de registro' />
+          <TextField 
+            fullWidth 
+            label='Data de registro' 
+          />
         </Grid>
         <Grid size={12} component="div">
-          <TextField fullWidth name="titulo" label='Título' defaultValue={data.titulo}/>
+          <TextField 
+            fullWidth 
+            name="titulo" 
+            label='Título' 
+            defaultValue={data.titulo}
+          />
         </Grid>
         <Grid component="div" size={4}>
-          <Box sx={{ minWidth: 120}}>
+          <Box sx={{ minWidth: 120}} >
             <FormControl fullWidth>
               <InputLabel id='fornecedor'>Fornecedor</InputLabel>
               <Select
                 id="fornecedor"
                 label="Fornecedor"
+                name="fornecedor"
+                defaultValue={data.fornecedor || '0'}
               >
+                <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>
@@ -85,7 +100,10 @@ async function Cadastro() {
               <Select
                 id="prioridade"
                 label="Prioridade"
+                name="prioridade"
+                defaultValue={data.prioridade || '0'}
               >
+                <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>
@@ -94,13 +112,28 @@ async function Cadastro() {
           </Box>
         </Grid>
         <Grid component="div" size={6}>
-          <TextField fullWidth label='Distrito' />
+          <TextField 
+            fullWidth 
+            label='Distrito'
+            name="distrito"
+            defaultValue={data.distrito}
+          />
         </Grid>
         <Grid component="div" size={6}>
-          <TextField fullWidth label='Bairro' />
+          <TextField 
+            fullWidth 
+            label='Bairro'
+            name="bairro"
+            defaultValue={data.bairro}  
+          />
         </Grid>
         <Grid component="div" size={12}>
-          <TextField fullWidth label='Logradouro' />
+          <TextField 
+            fullWidth 
+            label='Logradouro' 
+            name="logradouro"
+            defaultValue={data.logradouro}  
+          />
         </Grid>
         <Grid component="div" size={6}>
           <Box sx={{ minWidth: 120}}>
@@ -109,7 +142,10 @@ async function Cadastro() {
               <Select
                 id="programa"
                 label="Programa"
+                name="programa"
+                defaultValue={data.programa || '0'}  
               >
+                <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>
@@ -124,7 +160,10 @@ async function Cadastro() {
               <Select
                 id="orgaoresponsavel"
                 label="Órgão responsável"
+                name="orgao"
+                defaultValue={data.orgao || '0'}  
               >
+                <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>
@@ -137,12 +176,12 @@ async function Cadastro() {
             fullWidth
             multiline
             rows={4}
-            label='Descrição' />
+            label='Descrição' 
+            name="descricao"
+            defaultValue={data.descricao}  
+          />
         </Grid>
       </Grid>
-      <Button type="submit">
-        TEste
-      </Button>
       <FooterDefault buttons={buttons}/>
     </form>
     // </LocalizationProvider>
