@@ -62,6 +62,8 @@ async function Cadastro() {
           <TextField 
             fullWidth 
             label='Data de registro' 
+            name="data_registro" 
+            defaultValue={data.data_registro}
           />
         </Grid>
         <Grid size={12} component="div">
@@ -91,7 +93,12 @@ async function Cadastro() {
           </Box>
         </Grid>
         <Grid component="div" size={4}>
-            <TextField fullWidth label='Data' />
+            <TextField 
+              fullWidth 
+              label='Data' 
+              name="data_data" 
+              defaultValue={data.data_data}
+            />
         </Grid>
         <Grid component="div" size={4}>
           <Box sx={{ minWidth: 120}}>
