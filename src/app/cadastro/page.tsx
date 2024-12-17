@@ -1,54 +1,17 @@
 import FooterDefault from "@/components/FooterDefault";
-import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR, DEFAULT_THIRD_BUTTON_COLOR } from "@/utils/constants";
+import { getCadastro, handleSubmitCadastro } from "@/fetch/fetchCadastro";
+import { buttonsCadastro } from "@/utils/constants";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
-import { revalidateTag } from "next/cache";
 // import { DateField } from "@mui/x-date-pickers";
 
 async function Cadastro() {
 
-  const response = await fetch('http://localhost:3333/demanda/1', {
-    next: {
-      tags: ['get-cadastro']
-    }
-  })
-  const data = await response.json()
-
-  async function handleSubmit(form: FormData) {
-    "use server"
-        
-    const fields = Object.fromEntries(form.entries())
-    
-    console.log(fields)
-    
-    await fetch('http://localhost:3333/demanda/1', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(fields)
-    })
-
-    revalidateTag('get-cadastro')
-
-  }
-
-  const buttons = [
-    { name:'Despachar', 
-      color: DEFAULT_FIRST_BUTTON_COLOR,
-      msg: 'Ao despachar a demanda, será enviado um memmorando para o órgão responsável iniciar o planejamento'
-    },
-    { name:'Encerrar', 
-      color: DEFAULT_SECOND_BUTTON_COLOR,
-      msg: 'Ao encerrar a demanda não será mais possível executar nenhuma ação sobre ela'
-    },
-    { name:'Repriorizar',
-      color: DEFAULT_THIRD_BUTTON_COLOR,
-       msg: 'Ao repriorizar uma demanda, ela terá sua prioridade alterada e retornará para a lista de demandas enquanto aguarda nova análise'
-    }
-  ]
+  const data = await getCadastro();
 
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <form action={handleSubmit}>
+    <form action={handleSubmitCadastro}>
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField 
@@ -189,7 +152,7 @@ async function Cadastro() {
           />
         </Grid>
       </Grid>
-      <FooterDefault buttons={buttons}/>
+      <FooterDefault buttons={buttonsCadastro}/>
     </form>
     // </LocalizationProvider>
   )
