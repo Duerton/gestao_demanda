@@ -1,6 +1,9 @@
-import { Link, List, ListItemButton, ListItemText, Menu, MenuItem } from "@mui/material";
-
-import React, { useState } from "react";
+import * as React from 'react';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
+import Link from '@mui/material/Link';
 
 const options = [
   { pagina: 'Inicio', href: '/inicio' },
@@ -8,55 +11,40 @@ const options = [
   { pagina: 'Lista de demandas', href: '/listademanda'}
 ];
 
-const MenuButton = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+export default function LongMenu() {
+
+  // const [selectedIndex, setSelectedIndex] = useState(0);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLElement>,
-    index: number,
-  ) => {
-    setSelectedIndex(index);
-    setAnchorEl(null);
-  };
-
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
     <div>
-      <List
-        component="nav"
-        aria-label="Device settings"
-        sx={{ bgcolor: 'background.paper' }}
+      <IconButton
+        aria-label="more"
+        id="long-button"
+        aria-controls={open ? 'long-menu' : undefined}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
       >
-        <ListItemButton
-          id="lock-button"
-          aria-haspopup="listbox"
-          aria-controls="lock-menu"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClickListItem}
-        >
-          <ListItemText
-            primary={options[selectedIndex].pagina}
-          />
-        </ListItemButton>
-      </List>
+        <MenuIcon fontSize='large'/>
+      </IconButton>
       <Menu
-        id="lock-menu"
+        id="long-menu"
+        MenuListProps={{
+          'aria-labelledby': 'long-button',
+        }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'lock-button',
-          role: 'listbox',
-        }}
-        >
+      >
         {options.map((option) => (
           <Link 
             key={option.pagina} 
@@ -65,15 +53,14 @@ const MenuButton = () => {
             color="black"
           >
             <MenuItem
-            onClick={handleClose}
+              key={option.pagina}
+              onClick={handleClose}
             >
               {option.pagina}
             </MenuItem>
           </Link>
         ))}
-      </Menu> 
+      </Menu>
     </div>
-  )
+  );
 }
-
-export default MenuButton;

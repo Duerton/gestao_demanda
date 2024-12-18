@@ -8,7 +8,6 @@ import { deepOrange } from '@mui/material/colors';
 import SettingsIcon from '@mui/icons-material/Settings'
 import MenuButton from './MenuButton';
 
-
 const Header = () => {
   return (
       <Box sx={{flexGrow : 1}}>
@@ -44,9 +43,7 @@ const Header = () => {
               </IconButton>
             </Grid>
         </Grid>
-        <MenuButton>
-        
-        </MenuButton>
+        <MenuButton/>
       </Box>
       
   );
