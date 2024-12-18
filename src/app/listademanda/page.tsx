@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import GavelIcon from '@mui/icons-material/Gavel';
 import HeaderComponent from '@/components/HeaderComponent';
 import { useRouter } from 'next/navigation'
+import { statusRoute } from '@/utils/constants';
 
 interface Data {
   id: number,
@@ -48,16 +49,18 @@ export default function ListaDemanda() {
 
   const router = useRouter()
 
-  const handleDelete = (id: number) => { 
-    console.log(`Delete item with id: ${id}`);
+  const handlePrint= (id: number, estado: string) => { 
+    console.log(`Print item with id: ${id}, ${estado}`);
   };
 
-  const handleEdit = (id: number) => { 
-    router.push(`/cadastro/edit/${id}`);
+  const handleEdit = (id: number, estado: string) => { 
+    const status = statusRoute(estado)
+    router.push(`/${status}/edit/${id}`);
   };
 
-  const handleAction = (id: number) => { 
-    router.push(`/cadastro/action/${id}`);
+  const handleAction = (id: number, estado: string) => { 
+    const status = statusRoute(estado)
+    router.push(`/${status}/action/${id}`);
   };
 
   const columns: GridColDef[] = [
@@ -120,13 +123,13 @@ export default function ListaDemanda() {
       headerClassName: 'theme-header',
       renderCell: (params) => (
         <>
-          <IconButton onClick={() => handleAction(params.row.numero)} aria-label="edit">
+          <IconButton onClick={() => handleAction(params.row.numero, params.row.estado)} aria-label="edit">
             <GavelIcon />
           </IconButton>
-          <IconButton onClick={() => handleEdit(params.row.numero)} aria-label="delete">
+          <IconButton onClick={() => handleEdit(params.row.numero, params.row.estado)} aria-label="delete">
             <EditIcon />
           </IconButton>
-          <IconButton onClick={() => handleDelete(params.row.numero)} aria-label="delete">
+          <IconButton onClick={() => handlePrint(params.row.numero, params.row.estado)} aria-label="delete">
             <OutboxIcon />
           </IconButton>
         </>
