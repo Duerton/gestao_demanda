@@ -1,4 +1,5 @@
 import FooterDefault from "@/components/FooterDefault";
+import HeaderName from "@/components/HeaderComponent";
 import { getCadastro, handleSubmitCadastro } from "@/fetch/fetchCadastro";
 import { buttonsCadastro } from "@/utils/constants";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
@@ -10,8 +11,9 @@ async function Cadastro() {
   const data = await getCadastro();
 
   return (
-    // <LocalizationProvider dateAdapter={AdapterDayjs}>
+    // {/* // <LocalizationProvider dateAdapter={AdapterDayjs}> */}
     <form action={handleSubmitCadastro}>
+      <HeaderName name={'Cadastro de demanda'}/>
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField 
@@ -19,7 +21,7 @@ async function Cadastro() {
             name="num_demanda" 
             defaultValue={data.num_demanda}
             label='Nº da demanda' 
-          />
+            />
         </Grid>
         <Grid component="div" size={6}>
           <TextField 
@@ -27,7 +29,7 @@ async function Cadastro() {
             label='Data de registro' 
             name="data_registro" 
             defaultValue={data.data_registro}
-          />
+            />
         </Grid>
         <Grid size={12} component="div">
           <TextField 
@@ -35,7 +37,7 @@ async function Cadastro() {
             name="titulo" 
             label='Título' 
             defaultValue={data.titulo}
-          />
+            />
         </Grid>
         <Grid component="div" size={4}>
           <Box sx={{ minWidth: 120}} >
@@ -45,7 +47,7 @@ async function Cadastro() {
                 id="fornecedor"
                 label="Fornecedor"
                 name="fornecedor"
-                defaultValue={data.fornecedor || '0'}
+                defaultValue={data.fornecedor}
               >
                 <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
@@ -61,7 +63,7 @@ async function Cadastro() {
               label='Data' 
               name="data_data" 
               defaultValue={data.data_data}
-            />
+              />
         </Grid>
         <Grid component="div" size={4}>
           <Box sx={{ minWidth: 120}}>
@@ -72,7 +74,7 @@ async function Cadastro() {
                 label="Prioridade"
                 name="prioridade"
                 defaultValue={data.prioridade || '0'}
-              >
+                >
                 <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
@@ -87,7 +89,7 @@ async function Cadastro() {
             label='Distrito'
             name="distrito"
             defaultValue={data.distrito}
-          />
+            />
         </Grid>
         <Grid component="div" size={6}>
           <TextField 
@@ -95,7 +97,7 @@ async function Cadastro() {
             label='Bairro'
             name="bairro"
             defaultValue={data.bairro}  
-          />
+            />
         </Grid>
         <Grid component="div" size={12}>
           <TextField 
@@ -103,7 +105,7 @@ async function Cadastro() {
             label='Logradouro' 
             name="logradouro"
             defaultValue={data.logradouro}  
-          />
+            />
         </Grid>
         <Grid component="div" size={6}>
           <Box sx={{ minWidth: 120}}>
@@ -132,7 +134,7 @@ async function Cadastro() {
                 label="Órgão responsável"
                 name="orgao"
                 defaultValue={data.orgao || '0'}  
-              >
+                >
                 <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
@@ -149,12 +151,12 @@ async function Cadastro() {
             label='Descrição' 
             name="descricao"
             defaultValue={data.descricao}  
-          />
+            />
         </Grid>
       </Grid>
       <FooterDefault buttons={buttonsCadastro}/>
     </form>
-    // </LocalizationProvider>
+    // {/* // </LocalizationProvider> */}
   )
 }
   

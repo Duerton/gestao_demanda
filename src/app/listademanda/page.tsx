@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import OutboxIcon from '@mui/icons-material/Outbox';
 import EditIcon from '@mui/icons-material/Edit'
 import GavelIcon from '@mui/icons-material/Gavel';
+import HeaderComponent from '@/components/HeaderComponent';
 
 const handleDelete = (id: number) => { 
   console.log(`Delete item with id: ${id}`); 
@@ -129,7 +130,7 @@ export default function ListaDemanda() {
 
   return(
     <div style={{ height: 400, width: '100%' }}>
-      
+      <HeaderComponent name={'Lista de demandas'}/>
       <Box sx={{ width: '100%' }}>
         <DataGrid 
           rows={rows} 

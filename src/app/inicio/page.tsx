@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Grid from '@mui/material/Grid2';
+import HeaderName from "@/components/HeaderComponent";
 
 const card = (
   <React.Fragment>
@@ -21,6 +22,7 @@ const Inicio = () => {
 
   return (
     <Box sx={{ minWidth: 275 }}>
+      <HeaderName name='Inicio'/>
       <Grid container size={12}>
         <Grid display="flex" size="grow" justifyContent="center" alignItems="center" spacing={2}>
           <Grid display="flex" size="grow" justifyContent="center" alignItems="center">

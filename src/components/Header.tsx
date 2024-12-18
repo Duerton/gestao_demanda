@@ -5,12 +5,11 @@ import Image from 'next/image';
 import Grid from '@mui/material/Grid2';
 import { Avatar, Box, IconButton, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
-import SettingsIcon from '@mui/icons-material/Settings'
-import MenuButton from './MenuButton';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const Header = () => {
   return (
-      <Box sx={{flexGrow : 1}}>
+      <Box sx={{flexGrow : 1}} mb={'5px'}>
         <Grid sx={{backgroundColor: '#6EADE1'}} minWidth={730} container spacing={2}>
           <Grid size={1} minHeight={70} minWidth={70} sx={{backgroundColor: '6EADE1'}}>
             <Image src={'/feito.png'} width={70} height={70} alt='Logo'></Image>
@@ -43,7 +42,6 @@ const Header = () => {
               </IconButton>
             </Grid>
         </Grid>
-        <MenuButton/>
       </Box>
       
   );
