@@ -17,16 +17,18 @@ async function Planejamento ( {
 
   const categoria = (await params).categoria
   const isEdit = categoria === 'action'
+  const isAutorizacao = categoria === 'actionautorizacao'
   const decideButtons = () => {
-    if (categoria === 'actionautorizacao') return BUTTONS_PLANEJAMENTO_AUTORIZACAO
+    if (isAutorizacao) return BUTTONS_PLANEJAMENTO_AUTORIZACAO
     if (categoria === 'action') return BUTTONS_PLANEJAMENTO
     return DEFAULT_BUTTONS
   }
+  const header = isAutorizacao ? 'Autorização de execução': 'Planejamento da demanda';
 
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <form action={handleSubmitCadastro}>
-      <HeaderName name={'Planejamento da demanda'}/>
+      <HeaderName name={header}/>
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField disabled fullWidth label='Nº da demanda' />

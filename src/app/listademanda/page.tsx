@@ -31,8 +31,8 @@ const rows = [
   createData(2025010003, 2025010003, 'Primeira demanda', 'Planejamento'),
   createData(2025010004, 2025010004, 'Primeira demanda', 'Execução'),
   createData(2025010005, 2025010005, 'Primeira demanda', 'Autorização'),
-  createData(2025010006, 2025010006, 'Primeira demanda', 'Avaliação'),
-  createData(2025010007, 2025010009, 'Primeira demanda', 'Avaliação'),
+  createData(2025010006, 2025010006, 'Primeira demanda', 'Replanejamento'),
+  createData(2025010007, 2025010009, 'Primeira demanda', 'Encerramento'),
   createData(2025010008, 2025010008, 'Primeira demanda', 'Avaliação'),
   createData(2025010009, 2025010009,  'Primeira demanda', 'Avaliação'),
   createData(20250100010, 20250100010, 'Primeira demanda', 'Avaliação'),
@@ -59,9 +59,11 @@ export default function ListaDemanda() {
   };
 
   const handleAction = (id: number, estado: string) => { 
-    const status = statusRoute(estado)
+    const status = statusRoute(estado)    
     let categoria = 'action'
     if (estado === 'Autorização') categoria = 'actionautorizacao'
+    if (estado === 'Replanejamento') categoria = 'actionreplanejamento'
+    if (estado === 'Encerramento') categoria = 'actionencerramento'
     router.push(`/${status}/${categoria}/${id}`);
   };
 

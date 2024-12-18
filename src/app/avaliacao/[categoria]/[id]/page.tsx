@@ -1,33 +1,47 @@
 
-import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
-import FileUploadAndList from "../planejamento/components/FileList";
-import CompanyList from "../planejamento/components/CompanyList";
 import FooterDefault from "@/components/FooterDefault";
-import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR } from "@/utils/constants";
+import { BUTTONS_REPLANEJAMENTO, BUTTONS_ENCERRAMENTO, DEFAULT_BUTTONS, BUTTONS_AVALIACAO } from "@/utils/constants";
+import FileUploadAndList from "@/app/planejamento/components/FileList";
+import CompanyList from "@/app/planejamento/components/CompanyList";
+import { handleSubmitCadastro } from "@/fetch/fetchCadastro";
+import HeaderName from "@/components/HeaderComponent";
 // import { DateField } from "@mui/x-date-pickers";
 
 
-const Avaliacao = () => {
+async function Avaliacao ( {
+    params
+  } : {
+    params: Promise<{categoria: string, id:string}>
+  }) {
 
-  const buttons = [
-    { name:'Autorizar', 
-      color: DEFAULT_FIRST_BUTTON_COLOR,
-      msg: 'Ao autorizar o encerramento da demanda, o fluxo será interrompido e não será possível retomar a execução.'
-    },
-    { name:'Rejeitar', 
-      color: DEFAULT_SECOND_BUTTON_COLOR,
-      msg: 'Ao rejeitar o encerramento da demanda, ela será devolvida ao órgão responsável para que continue a execução da mesma.'
-    },
-    // { name:'Solicitar replanejamento',
-    //   color: DEFAULT_THIRD_BUTTON_COLOR,
-    //   msg: 'Ao autorizar o replanejamento da demanda, ela retornará para o órgão responsável elaborar um novo planejamento.'
-    // }
-  ]
+  const categoria = (await params).categoria
+  const isEdit = categoria === 'action'
+
+  let header = ''
+  let buttons = DEFAULT_BUTTONS
+  switch (categoria){
+    case 'actionreplanejamento':
+      header = 'Avaliar replanejamento da demanda'
+      buttons = BUTTONS_ENCERRAMENTO
+      break;
+    case 'actionencerramento':
+      header = 'Avaliar encerramento da demanda'
+      buttons = BUTTONS_REPLANEJAMENTO
+      break;
+    default:
+      header = 'Avaliação final'
+      buttons = isEdit ? BUTTONS_AVALIACAO : DEFAULT_BUTTONS
+      break;
+  }
+  
+  // const header = isAutorizacao ? 'Avaliar encerramento da demanda': 'Avaliar replanejamento da demanda';
 
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <Container>
+    <form action={handleSubmitCadastro}>
+      <HeaderName name={header}/>
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField disabled fullWidth label='Nº da demanda' />
@@ -167,7 +181,7 @@ const Avaliacao = () => {
         </Grid>
       </Grid>
       <FooterDefault buttons={buttons}/>
-    </Container>
+    </form>
     // </LocalizationProvider>
   )
 }
