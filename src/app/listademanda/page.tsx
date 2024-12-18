@@ -30,7 +30,7 @@ const rows = [
   createData(2025010002, 2025010002, 'Primeira demanda', 'Análise'),
   createData(2025010003, 2025010003, 'Primeira demanda', 'Planejamento'),
   createData(2025010004, 2025010004, 'Primeira demanda', 'Execução'),
-  createData(2025010005, 2025010005, 'Primeira demanda', 'Avaliação'),
+  createData(2025010005, 2025010005, 'Primeira demanda', 'Autorização'),
   createData(2025010006, 2025010006, 'Primeira demanda', 'Avaliação'),
   createData(2025010007, 2025010009, 'Primeira demanda', 'Avaliação'),
   createData(2025010008, 2025010008, 'Primeira demanda', 'Avaliação'),
@@ -60,7 +60,9 @@ export default function ListaDemanda() {
 
   const handleAction = (id: number, estado: string) => { 
     const status = statusRoute(estado)
-    router.push(`/${status}/action/${id}`);
+    let categoria = 'action'
+    if (estado === 'Autorização') categoria = 'actionautorizacao'
+    router.push(`/${status}/${categoria}/${id}`);
   };
 
   const columns: GridColDef[] = [
@@ -126,9 +128,10 @@ export default function ListaDemanda() {
           <IconButton onClick={() => handleAction(params.row.numero, params.row.estado)} aria-label="edit">
             <GavelIcon />
           </IconButton>
+          {params.row.estado === 'Autorização' ? <IconButton/> :
           <IconButton onClick={() => handleEdit(params.row.numero, params.row.estado)} aria-label="delete">
             <EditIcon />
-          </IconButton>
+          </IconButton>}
           <IconButton onClick={() => handlePrint(params.row.numero, params.row.estado)} aria-label="delete">
             <OutboxIcon />
           </IconButton>

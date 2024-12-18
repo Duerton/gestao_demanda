@@ -1,7 +1,7 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import FooterDefault from "@/components/FooterDefault";
-import { buttonsPlanejamento, DEFAULT_BUTTONS } from "@/utils/constants";
+import { BUTTONS_PLANEJAMENTO, BUTTONS_PLANEJAMENTO_AUTORIZACAO, DEFAULT_BUTTONS } from "@/utils/constants";
 import FileUploadAndList from "../../components/FileList";
 import CompanyList from "../../components/CompanyList";
 import { handleSubmitCadastro } from "@/fetch/fetchCadastro";
@@ -17,6 +17,11 @@ async function Planejamento ( {
 
   const categoria = (await params).categoria
   const isEdit = categoria === 'action'
+  const decideButtons = () => {
+    if (categoria === 'actionautorizacao') return BUTTONS_PLANEJAMENTO_AUTORIZACAO
+    if (categoria === 'action') return BUTTONS_PLANEJAMENTO
+    return DEFAULT_BUTTONS
+  }
 
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -138,7 +143,7 @@ async function Planejamento ( {
         </Grid>
       </Grid>
       
-      <FooterDefault buttons={isEdit ? buttonsPlanejamento : DEFAULT_BUTTONS}/>
+      <FooterDefault buttons={decideButtons()}/>
     </form>
     // </LocalizationProvider>
   )
