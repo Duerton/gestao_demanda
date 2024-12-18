@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const options = [
   { pagina: 'Inicio', href: '/inicio' },
-  { pagina: 'Cadastro de demandas', href: '/cadastro'},
+  { pagina: 'Cadastro de demandas', href: '/cadastro/edit/new'},
   { pagina: 'Lista de demandas', href: '/listademanda'}
 ];
 

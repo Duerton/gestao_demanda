@@ -1,13 +1,20 @@
 import FooterDefault from "@/components/FooterDefault";
 import HeaderName from "@/components/HeaderComponent";
 import { getCadastro, handleSubmitCadastro } from "@/fetch/fetchCadastro";
-import { buttonsCadastro } from "@/utils/constants";
+import { buttonsCadastro, DEFAULT_BUTTONS } from "@/utils/constants";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 // import { DateField } from "@mui/x-date-pickers";
 
-async function Cadastro() {
+async function Cadastro ( {
+    params
+  } : {
+    params: Promise<{categoria: string, id:string}>
+  }) {
 
+  const categoria = (await params).categoria
+  const isEdit = categoria === 'action'
+  
   const data = await getCadastro();
 
   return (
@@ -21,6 +28,7 @@ async function Cadastro() {
             name="num_demanda" 
             defaultValue={data.num_demanda}
             label='Nº da demanda' 
+            disabled
             />
         </Grid>
         <Grid component="div" size={6}>
@@ -29,6 +37,7 @@ async function Cadastro() {
             label='Data de registro' 
             name="data_registro" 
             defaultValue={data.data_registro}
+            disabled={isEdit}
             />
         </Grid>
         <Grid size={12} component="div">
@@ -37,6 +46,7 @@ async function Cadastro() {
             name="titulo" 
             label='Título' 
             defaultValue={data.titulo}
+            disabled={isEdit}
             />
         </Grid>
         <Grid component="div" size={4}>
@@ -48,6 +58,7 @@ async function Cadastro() {
                 label="Fornecedor"
                 name="fornecedor"
                 defaultValue={data.fornecedor}
+                disabled={isEdit}
               >
                 <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
@@ -63,6 +74,7 @@ async function Cadastro() {
               label='Data' 
               name="data_data" 
               defaultValue={data.data_data}
+              disabled={isEdit}
               />
         </Grid>
         <Grid component="div" size={4}>
@@ -74,6 +86,7 @@ async function Cadastro() {
                 label="Prioridade"
                 name="prioridade"
                 defaultValue={data.prioridade || '0'}
+                disabled={isEdit}
                 >
                 <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
@@ -89,6 +102,7 @@ async function Cadastro() {
             label='Distrito'
             name="distrito"
             defaultValue={data.distrito}
+            disabled={isEdit}
             />
         </Grid>
         <Grid component="div" size={6}>
@@ -97,6 +111,7 @@ async function Cadastro() {
             label='Bairro'
             name="bairro"
             defaultValue={data.bairro}  
+            disabled={isEdit}
             />
         </Grid>
         <Grid component="div" size={12}>
@@ -105,6 +120,7 @@ async function Cadastro() {
             label='Logradouro' 
             name="logradouro"
             defaultValue={data.logradouro}  
+            disabled={isEdit}
             />
         </Grid>
         <Grid component="div" size={6}>
@@ -115,7 +131,8 @@ async function Cadastro() {
                 id="programa"
                 label="Programa"
                 name="programa"
-                defaultValue={data.programa || '0'}  
+                defaultValue={data.programa || '0'} 
+                disabled={isEdit} 
               >
                 <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
@@ -134,6 +151,7 @@ async function Cadastro() {
                 label="Órgão responsável"
                 name="orgao"
                 defaultValue={data.orgao || '0'}  
+                disabled={isEdit}
                 >
                 <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
@@ -151,10 +169,11 @@ async function Cadastro() {
             label='Descrição' 
             name="descricao"
             defaultValue={data.descricao}  
+            disabled={isEdit}
             />
         </Grid>
       </Grid>
-      <FooterDefault buttons={buttonsCadastro}/>
+      <FooterDefault buttons={isEdit ? buttonsCadastro : DEFAULT_BUTTONS}/>
     </form>
     // {/* // </LocalizationProvider> */}
   )
