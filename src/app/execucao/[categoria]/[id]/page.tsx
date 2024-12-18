@@ -1,33 +1,27 @@
-import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
-import FileUploadAndList from "../planejamento/components/FileList";
-import CompanyList from "../planejamento/components/CompanyList";
 import FooterDefault from "@/components/FooterDefault";
-import { DEFAULT_FIRST_BUTTON_COLOR, DEFAULT_SECOND_BUTTON_COLOR, DEFAULT_THIRD_BUTTON_COLOR } from "@/utils/constants";
+import { BUTTONS_EXECUCAO, DEFAULT_BUTTONS } from "@/utils/constants";
+import FileUploadAndList from "@/app/planejamento/components/FileList";
+import CompanyList from "@/app/planejamento/components/CompanyList";
+import { handleSubmitCadastro } from "@/fetch/fetchCadastro";
+import HeaderName from "@/components/HeaderComponent";
 // import { DateField } from "@mui/x-date-pickers";
 
 
-const Planejamento = () => {
+async function Execucao ( {
+    params
+  } : {
+    params: Promise<{categoria: string, id:string}>
+  }) {
 
-  const buttons = [
-    { name:'Concluir execução', 
-      color: DEFAULT_FIRST_BUTTON_COLOR,
-      msg: 'Ao concluir a execução da demanda, ela será devolvida para a secretaria de gestão avaliar os resultados obtidos.'
-    },
-    { name:'Solicitar interrupção', 
-      color: DEFAULT_SECOND_BUTTON_COLOR,
-      msg: ''
-    },
-    { name:'Solicitar replanejamento',
-      color: DEFAULT_THIRD_BUTTON_COLOR,
-      msg: ''
-    }
-  ]
-
+  const categoria = (await params).categoria
+  const isEdit = categoria === 'action'
 
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <Container>
+    <form action={handleSubmitCadastro}>
+      <HeaderName name={'Execução da demanda'}/>
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField disabled fullWidth label='Nº da demanda' />
@@ -143,10 +137,10 @@ const Planejamento = () => {
           <CompanyList/>
         </Grid>
         <Grid component="div" size={6}>
-          <TextField fullWidth label='Orçamento utilizado' />
+          <TextField fullWidth disabled={isEdit} label='Orçamento utilizado' />
         </Grid>
         <Grid component="div" size={6}>
-          <TextField fullWidth label='Etapas concluídas' />
+          <TextField fullWidth disabled={isEdit} label='Etapas concluídas' />
         </Grid>
         <Grid component="div" size={6}>
           <FileUploadAndList label={'Imagens'}/>
@@ -156,10 +150,10 @@ const Planejamento = () => {
         </Grid>
       </Grid>
       
-      <FooterDefault buttons={buttons}/>
-    </Container>
+      <FooterDefault buttons={isEdit ? BUTTONS_EXECUCAO : DEFAULT_BUTTONS}/>
+    </form>
     // </LocalizationProvider>
   )
 }
   
-export default Planejamento;
+export default Execucao;

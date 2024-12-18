@@ -4,8 +4,9 @@ export const DEFAULT_THIRD_BUTTON_COLOR = '#625B71'
 
 export const ANALISE = 'Análise';
 export const PLANEJAMENTO = 'Planejamento'
-export const AVALIACAO = 'Execução'
+export const AVALIACAO = 'Avaliação'
 export const AUTORIZACAO = 'Autorização'
+export const EXECUCAO = 'Execução'
 
 export const DEFAULT_BUTTONS = [
   { 
@@ -59,6 +60,26 @@ export const BUTTONS_PLANEJAMENTO_AUTORIZACAO = [
   }
 ]
 
+
+export const BUTTONS_EXECUCAO = [
+  { 
+    name:'Concluir execução', 
+    color: DEFAULT_FIRST_BUTTON_COLOR,
+    msg: 'Ao concluir a execução da demanda, ela será devolvida para a secretaria de gestão avaliar os resultados obtidos.'
+  },
+  { 
+    name:'Solicitar interrupção', 
+    color: DEFAULT_SECOND_BUTTON_COLOR,
+    msg: ''
+  },
+  { 
+    name:'Solicitar replanejamento',
+    color: DEFAULT_THIRD_BUTTON_COLOR,
+    msg: ''
+  }
+]
+
+
 export const statusRoute = (param: string) : string => {
   console.log('param', param);
   
@@ -67,6 +88,7 @@ export const statusRoute = (param: string) : string => {
     case PLANEJAMENTO: {return 'planejamento'}
     case AVALIACAO: {return 'avaliacao'}
     case AUTORIZACAO: {return 'planejamento'}
+    case EXECUCAO: {return 'execucao'}
     default : return ''
   }
 }
