@@ -12,10 +12,10 @@ async function Cadastro ( {
     params: Promise<{categoria: string, id:string}>
   }) {
 
-  const categoria = (await params).categoria
+  const {categoria, id} = (await params)
   const isEdit = categoria === 'action'
   
-  const data = await getCadastro();
+  const data = id === 'new' ? {} : await getCadastro(id);
 
   return (
     // {/* // <LocalizationProvider dateAdapter={AdapterDayjs}> */}
@@ -28,7 +28,7 @@ async function Cadastro ( {
             name="num_demanda" 
             defaultValue={data.num_demanda}
             label='Nº da demanda' 
-            disabled
+            disabled={isEdit}
             />
         </Grid>
         <Grid component="div" size={6}>

@@ -2,46 +2,33 @@
 
 import { Box, Button, Chip, Container, IconButton } from '@mui/material';
 import { DataGrid, GridColDef, GridFilterModel } from '@mui/x-data-grid';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OutboxIcon from '@mui/icons-material/Outbox';
 import EditIcon from '@mui/icons-material/Edit'
 import GavelIcon from '@mui/icons-material/Gavel';
 import HeaderComponent from '@/components/HeaderComponent';
 import { useRouter } from 'next/navigation'
 import { statusRoute } from '@/utils/constants';
+import { getListaDemanda } from '@/fetch/fetchCadastro';
 
 interface Data {
   id: number,
   numero: number;
   titulo: string;
   estado: string;
+  prioridade: string;
 }
-
-function createData(
-  id: number,
-  numero: number,
-  titulo: string,
-  estado: string,
-): Data {
-  return { id, numero, titulo, estado };
-}
-
-const rows = [
-  createData(2025010002, 2025010002, 'Primeira demanda', 'Análise'),
-  createData(2025010003, 2025010003, 'Primeira demanda', 'Planejamento'),
-  createData(2025010004, 2025010004, 'Primeira demanda', 'Execução'),
-  createData(2025010005, 2025010005, 'Primeira demanda', 'Autorização'),
-  createData(2025010006, 2025010006, 'Primeira demanda', 'Replanejamento'),
-  createData(2025010007, 2025010009, 'Primeira demanda', 'Encerramento'),
-  createData(2025010008, 2025010008, 'Primeira demanda', 'Avaliação'),
-  createData(2025010009, 2025010009,  'Primeira demanda', 'Avaliação'),
-  createData(20250100010, 20250100010, 'Primeira demanda', 'Avaliação'),
-  createData(20250100011, 20250100011, 'Primeira demanda', 'Avaliação'),
-  createData(20250100012, 20250100012, 'Primeira demanda', 'Avaliação'),
-  createData(20250100013, 20250100013, 'Primeira demanda', 'Avaliação'),
-];
 
 export default function ListaDemanda() {
+  const [data, setData] = useState<Data[] | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getListaDemanda()
+      setData(response)
+    }
+    fetchData()
+  },[])
 
   const [filterModel, setFilterModel] = useState<GridFilterModel>({
     items: [],
@@ -67,8 +54,12 @@ export default function ListaDemanda() {
     router.push(`/${status}/${categoria}/${id}`);
   };
 
+  const newDemand = () => {
+    router.push('/cadastro/edit/new');
+  }
+
   const columns: GridColDef[] = [
-    { field: 'numero',
+    { field: 'num_demanda',
       headerName: 'Número',
       minWidth: 120,
       headerAlign: 'center',
@@ -127,14 +118,14 @@ export default function ListaDemanda() {
       headerClassName: 'theme-header',
       renderCell: (params) => (
         <>
-          <IconButton onClick={() => handleAction(params.row.numero, params.row.estado)} aria-label="edit">
+          <IconButton onClick={() => handleAction(params.row.num_demanda, params.row.estado)} aria-label="edit">
             <GavelIcon />
           </IconButton>
           {params.row.estado === 'Autorização' ? <IconButton/> :
-          <IconButton onClick={() => handleEdit(params.row.numero, params.row.estado)} aria-label="delete">
+          <IconButton onClick={() => handleEdit(params.row.num_demanda, params.row.estado)} aria-label="delete">
             <EditIcon />
           </IconButton>}
-          <IconButton onClick={() => handlePrint(params.row.numero, params.row.estado)} aria-label="delete">
+          <IconButton onClick={() => handlePrint(params.row.num_demanda, params.row.estado)} aria-label="delete">
             <OutboxIcon />
           </IconButton>
         </>
@@ -147,13 +138,13 @@ export default function ListaDemanda() {
       <HeaderComponent name={'Lista de demandas'}/>
       <Box sx={{ width: '100%' }}>
         <DataGrid 
-          rows={rows} 
+          rows={data} 
           columns={columns} 
           density='compact'
           filterModel={filterModel}
           onFilterModelChange={(newFilterModel) => setFilterModel(newFilterModel)} 
         />
-        <Button variant='contained'>
+        <Button variant='contained' onClick={newDemand}>
           Cadastrar nova demanda
         </Button>
       </Box>
