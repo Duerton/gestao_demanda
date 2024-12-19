@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import ModalDefault from '@/components/ModalDefault';
+import { useRouter } from 'next/navigation'
 
 interface ButtonProps {
   name: string,
@@ -18,7 +19,8 @@ const FooterDefault: React.FC<FooterDefault> = ({buttons}) => {
   
   const [open, setOpen] = useState<boolean>(false); 
   const [currentButtonName, setCurrentButtonName] = useState<string | null>(null);
-  
+  const router = useRouter()
+
   const handleOpenModal = (name: string) => { 
     setCurrentButtonName(name)
     setOpen(!open)
@@ -27,6 +29,10 @@ const FooterDefault: React.FC<FooterDefault> = ({buttons}) => {
   const handleCloseModal = () => { 
     setOpen(false); 
     setCurrentButtonName(null);
+  };
+
+  const handleCancel = () => { 
+    router.push(`/listademanda`);
   };
 
   return (
@@ -59,7 +65,12 @@ const FooterDefault: React.FC<FooterDefault> = ({buttons}) => {
           </Box>
         )
       })}
-      <Button variant="outlined" color="primary" sx={{ mx: 1, marginLeft : '0px' }}>
+      <Button 
+        variant="outlined" 
+        color="primary" 
+        sx={{ mx: 1, marginLeft : '0px' }}
+        onClick={handleCancel}
+      >
         Cancelar
       </Button>
     </Box>

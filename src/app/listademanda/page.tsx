@@ -58,6 +58,18 @@ export default function ListaDemanda() {
     router.push('/cadastro/edit/new');
   }
 
+  const getStatusColor = (status: '1' | '2' | '3') => {
+    switch (status) { 
+      case '1': 
+        return 'green'; 
+      case '2': 
+        return 'yellow'; 
+      case '3': 
+        return 'red'; 
+      default: 
+        return 'grey'; }
+  }
+
   const columns: GridColDef[] = [
     { field: 'num_demanda',
       headerName: 'Número',
@@ -93,7 +105,7 @@ export default function ListaDemanda() {
       align: 'center',
       display: 'flex',
       headerClassName: 'theme-header',
-      renderCell: () => (
+      renderCell: (params) => (
         <Container
           sx= {{ 
                 justifyContent: 'center', 
@@ -103,7 +115,7 @@ export default function ListaDemanda() {
           <Chip 
             sx= {{ width: 25, 
                   height: 25,
-                  backgroundColor: 'blue'
+                  backgroundColor: getStatusColor(params.row.prioridade)
                 }}
           />
         </Container>
