@@ -21,6 +21,7 @@ async function Cadastro ( {
     // {/* // <LocalizationProvider dateAdapter={AdapterDayjs}> */}
     <form action={handleSubmitCadastro}>
       <HeaderName name={'Cadastro de demanda'}/>
+      <input type='hidden' value={id} name="id"></input>
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField 

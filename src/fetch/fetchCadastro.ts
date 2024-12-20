@@ -17,17 +17,15 @@ export async function getCadastro(id: string) {
 export async function handleSubmitCadastro(form: FormData) {
       
   const fields = Object.fromEntries(form.entries())
-  console.log('fields', fields)
-  const id = fields.num_demanda;
+  
   let method = 'POST'
   let address = `http://localhost:3333/demanda`
-  if (fields.id) {
+  if (fields.id !== 'new') {
     method = 'PUT'
-    address = `http://localhost:3333/demanda/${fields.id}`
+    address = `http://localhost:3333/demanda/${fields.num_demanda}`
   }
-  const values = {...fields, estado: 'Análise', id: id}
-  console.log(values)
-  
+  const values = {...fields, estado: 'Análise', id: fields.num_demanda}
+
   await fetch(address, {
     method: method,
     headers: { 'Content-Type': 'application/json' },
