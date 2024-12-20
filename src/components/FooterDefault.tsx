@@ -4,18 +4,21 @@ import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import ModalDefault from '@/components/ModalDefault';
 import { useRouter } from 'next/navigation'
+import { Demanda } from '@/utils/types';
 
 interface ButtonProps {
   name: string,
   color: string,
   msg: string,
+  estado: string
 }
 
 interface FooterDefault {
-  buttons: Array<ButtonProps>
+  buttons: Array<ButtonProps>,
+  data: Demanda
 }
 
-const FooterDefault: React.FC<FooterDefault> = ({buttons}) => {
+const FooterDefault: React.FC<FooterDefault> = ({buttons, data}) => {
   
   const [open, setOpen] = useState<boolean>(false); 
   const [currentButtonName, setCurrentButtonName] = useState<string | null>(null);
@@ -60,6 +63,8 @@ const FooterDefault: React.FC<FooterDefault> = ({buttons}) => {
                 handleCloseModal={handleCloseModal}
                 name={button.name}
                 msg={button.msg}
+                estado={button.estado}
+                data={data}
               />
             )}
           </Box>

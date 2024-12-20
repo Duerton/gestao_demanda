@@ -1,9 +1,9 @@
 "use server"
 
+import { Demanda } from '@/utils/types'
 import { redirect } from 'next/navigation'
 
 export async function getCadastro(id: string) {
-  console.log('id', id);
   
   const response = await fetch(`http://localhost:3333/demanda/${id}`, {
     next: {
@@ -17,7 +17,7 @@ export async function getCadastro(id: string) {
 export async function handleSubmitCadastro(form: FormData) {
       
   const fields = Object.fromEntries(form.entries())
-  
+
   let method = 'POST'
   let address = `http://localhost:3333/demanda`
   if (fields.id !== 'new') {
@@ -44,4 +44,14 @@ export async function getListaDemanda() {
   })
   const data = await response.json()
   return data
+}
+
+export async function handleEstado(estado: string, data: Demanda, input: string) {
+  const newData = {...data, estado: estado}
+
+  await fetch(`http://localhost:3333/demanda/${data.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newData)
+  })
 }

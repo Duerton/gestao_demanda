@@ -23,7 +23,6 @@ export default function ListaDemanda() {
   const [data, setData] = useState<Data[] | undefined>(undefined);
 
   useEffect(() => {
-    console.log('merda');
     const fetchData = () => {
       getListaDemanda().then( response => {
         setData(response)

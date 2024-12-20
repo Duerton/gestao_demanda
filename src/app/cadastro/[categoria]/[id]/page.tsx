@@ -170,7 +170,10 @@ async function Cadastro ( {
             />
         </Grid>
       </Grid>
-      <FooterDefault buttons={isEdit ? buttonsCadastro : DEFAULT_BUTTONS}/>
+      <FooterDefault 
+        buttons={isEdit ? buttonsCadastro : DEFAULT_BUTTONS} 
+        data={data}
+      />
     </form>
     // {/* // </LocalizationProvider> */}
   )
