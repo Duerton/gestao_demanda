@@ -1,20 +1,15 @@
+import { Estados } from "./types";
+
 export const DEFAULT_FIRST_BUTTON_COLOR = '#6EADE1'
 export const DEFAULT_SECOND_BUTTON_COLOR = '#AF3D36'
 export const DEFAULT_THIRD_BUTTON_COLOR = '#625B71'
-
-export const ANALISE = 'Análise';
-export const PLANEJAMENTO = 'Planejamento'
-export const AVALIACAO = 'Avaliação'
-export const REPLANEJAMENTO = 'Replanejamento'
-export const ENCERRAMENTO = 'Encerramento'
-export const AUTORIZACAO = 'Autorização'
-export const EXECUCAO = 'Execução'
 
 export const DEFAULT_BUTTONS = [
   { 
     name:'Salvar', 
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg:''
+    msg:'',
+    estado: ''
   },
 ]
 
@@ -22,17 +17,20 @@ export const buttonsCadastro = [
   { 
     name:'Despachar', 
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg: 'Ao despachar a demanda, será enviado um memmorando para o órgão responsável iniciar o planejamento'
+    msg: 'Ao despachar a demanda, será enviado um memmorando para o órgão responsável iniciar o planejamento',
+    estado: Estados.PLANEJAMENTO
   },
   {
     name:'Encerrar', 
     color: DEFAULT_SECOND_BUTTON_COLOR,
-    msg: 'Ao encerrar a demanda não será mais possível executar nenhuma ação sobre ela'
+    msg: 'Ao encerrar a demanda não será mais possível executar nenhuma ação sobre ela',
+    estado: Estados.ENCERRADO
   },
   { 
     name:'Repriorizar',
     color: DEFAULT_THIRD_BUTTON_COLOR,
-    msg: 'Ao repriorizar uma demanda, ela terá sua prioridade alterada e retornará para a lista de demandas enquanto aguarda nova análise'
+    msg: 'Ao repriorizar uma demanda, ela terá sua prioridade alterada e retornará para a lista de demandas enquanto aguarda nova análise',
+    estado: Estados.ANALISE
   }
 ]
 
@@ -115,13 +113,13 @@ export const statusRoute = (param: string) : string => {
   console.log('param', param);
   
   switch (param) {
-    case ANALISE: {return 'cadastro'}
-    case EXECUCAO: {return 'execucao'}
-    case PLANEJAMENTO: {return 'planejamento'}
-    case AUTORIZACAO: {return 'planejamento'}
-    case AVALIACAO: {return 'avaliacao'}
-    case REPLANEJAMENTO: {return 'avaliacao'}
-    case ENCERRAMENTO: {return 'avaliacao'}
+    case Estados.ANALISE: {return 'cadastro'}
+    case Estados.EXECUCAO: {return 'execucao'}
+    case Estados.PLANEJAMENTO: {return 'planejamento'}
+    case Estados.AUTORIZACAO: {return 'planejamento'}
+    case Estados.AVALIACAO: {return 'avaliacao'}
+    case Estados.REPLANEJAMENTO: {return 'avaliacao'}
+    case Estados.ENCERRAMENTO: {return 'avaliacao'}
     default : return ''
   }
 }

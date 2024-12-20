@@ -11,5 +11,17 @@ export interface Demanda {
   programa: string,
   orgao: string,
   descricao: string,
-  id: number
+  id: number,
+  estado: Estados
+}
+
+export enum Estados {
+  ANALISE = 'Análise',
+  PLANEJAMENTO = 'Planejamento',
+  AVALIACAO = 'Avaliação',
+  REPLANEJAMENTO = 'Replanejamento',
+  ENCERRAMENTO = 'Encerramento',
+  AUTORIZACAO = 'Autorização',
+  EXECUCAO = 'Execução',
+  ENCERRADO = 'Encerrado'
 }
