@@ -57,10 +57,9 @@ async function Cadastro ( {
                 id="fornecedor"
                 label="Fornecedor"
                 name="fornecedor"
-                defaultValue={data.fornecedor}
+                defaultValue={data.fornecedor || '1'}
                 disabled={isEdit}
               >
-                <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>
@@ -85,13 +84,12 @@ async function Cadastro ( {
                 id="prioridade"
                 label="Prioridade"
                 name="prioridade"
-                defaultValue={data.prioridade || '0'}
+                defaultValue={data.prioridade || 'verde'}
                 disabled={isEdit}
                 >
-                <MenuItem value={0}>Vazio</MenuItem>
-                <MenuItem value={1}>Verde</MenuItem>
-                <MenuItem value={2}>Amarelo</MenuItem>
-                <MenuItem value={3}>Vermelho</MenuItem>
+                <MenuItem value={'verde'}>Verde</MenuItem>
+                <MenuItem value={'amarelo'}>Amarelo</MenuItem>
+                <MenuItem value={'vermelho'}>Vermelho</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -131,10 +129,9 @@ async function Cadastro ( {
                 id="programa"
                 label="Programa"
                 name="programa"
-                defaultValue={data.programa || '0'} 
+                defaultValue={data.programa || 'verde'} 
                 disabled={isEdit} 
               >
-                <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>
@@ -150,10 +147,9 @@ async function Cadastro ( {
                 id="orgaoresponsavel"
                 label="Órgão responsável"
                 name="orgao"
-                defaultValue={data.orgao || '0'}  
+                defaultValue={data.orgao || 'verde'}  
                 disabled={isEdit}
                 >
-                <MenuItem value={0}>Vazio</MenuItem>
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>

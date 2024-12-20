@@ -23,11 +23,13 @@ export default function ListaDemanda() {
   const [data, setData] = useState<Data[] | undefined>(undefined);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getListaDemanda()
-      setData(response)
+    console.log('merda');
+    const fetchData = () => {
+      getListaDemanda().then( response => {
+        setData(response)
+      })
     }
-    fetchData()
+    fetchData();
   },[])
 
   const [filterModel, setFilterModel] = useState<GridFilterModel>({
@@ -58,13 +60,13 @@ export default function ListaDemanda() {
     router.push('/cadastro/edit/new');
   }
 
-  const getStatusColor = (status: '1' | '2' | '3') => {
+  const getStatusColor = (status: 'verde' | 'amarelo' | 'vermelho') => {
     switch (status) { 
-      case '1': 
+      case 'verde': 
         return 'green'; 
-      case '2': 
+      case 'amarelo': 
         return 'yellow'; 
-      case '3': 
+      case 'vermelho': 
         return 'red'; 
       default: 
         return 'grey'; }
