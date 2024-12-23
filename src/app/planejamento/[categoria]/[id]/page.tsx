@@ -3,11 +3,11 @@ import Grid from '@mui/material/Grid2';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import FooterDefault from "@/components/FooterDefault";
 import { BUTTONS_PLANEJAMENTO, BUTTONS_PLANEJAMENTO_AUTORIZACAO, BUTTONS_PLANEJAMENTO_EDIT } from "@/utils/constants";
-import FileUploadAndList from "../../components/FileList";
 import CompanyList from "../../components/CompanyList";
 import { getCadastro, handleSubmitCadastro } from "@/fetch/fetchCadastro";
 import HeaderName from "@/components/HeaderComponent";
 import { Estados } from "@/utils/types";
+import UploadSingleFile from "@/components/UploadSingleFile";
 // import { DateField } from "@mui/x-date-pickers";
 
 
@@ -250,10 +250,28 @@ async function Planejamento ( {
             defaultValue={data.responsavel}
           />
         </Grid>
-        <Grid component="div" size={6}>
-          <FileUploadAndList label={'Arquivo'}/>
+        <Grid container size={12}>
+          <Grid 
+            size={10}
+            display="flex"
+            alignItems="center"
+          >
+            <TextField 
+              disabled
+              fullWidth
+              label='Nome do arquivo'
+            />
+          </Grid>
+          <Grid 
+            size={2} 
+            display="flex"
+            alignContent="center"
+            justifyContent="center"
+          >
+            <UploadSingleFile/>
+          </Grid>
         </Grid>
-        <Grid component="div" size={6}>
+        <Grid component="div" size={12}>
           <CompanyList/>
         </Grid>
       </Grid>
