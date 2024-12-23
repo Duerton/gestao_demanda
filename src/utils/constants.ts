@@ -114,6 +114,7 @@ export const statusRoute = (param: string) : string => {
   
   switch (param) {
     case Estados.ANALISE: {return 'cadastro'}
+    case Estados.ENCERRADO: {return 'cadastro'}
     case Estados.EXECUCAO: {return 'execucao'}
     case Estados.PLANEJAMENTO: {return 'planejamento'}
     case Estados.AUTORIZACAO: {return 'planejamento'}
