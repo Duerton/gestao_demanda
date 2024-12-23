@@ -18,7 +18,7 @@ async function Planejamento ( {
 
   const {categoria, id} = (await params)
   const data = id === 'new' ? {} : await getCadastro(id);
-  const isEdit = categoria === 'action'
+  const isEdit = categoria !== 'edit'
   const isAutorizacao = categoria === 'actionautorizacao'
   const decideButtons = () => {
     if (isAutorizacao) return BUTTONS_PLANEJAMENTO_AUTORIZACAO
