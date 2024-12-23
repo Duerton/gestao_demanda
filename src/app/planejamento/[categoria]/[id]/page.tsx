@@ -275,7 +275,6 @@ async function Planejamento ( {
           <CompanyList/>
         </Grid>
       </Grid>
-      
       <FooterDefault 
         buttons={decideButtons()}
         data={data}
