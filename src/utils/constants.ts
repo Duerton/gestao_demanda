@@ -98,22 +98,26 @@ export const BUTTONS_EXECUCAO = [
 export const BUTTONS_ENCERRAMENTO = [
   { name:'Autorizar', 
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg: 'Ao autorizar o encerramento da demanda, o fluxo será interrompido e não será possível retomar a execução.'
+    msg: 'Ao autorizar o encerramento da demanda, o fluxo será interrompido e não será possível retomar a execução.',
+    estado: Estados.ENCERRADO
   },
   { name:'Rejeitar', 
     color: DEFAULT_SECOND_BUTTON_COLOR,
-    msg: 'Ao rejeitar o encerramento da demanda, ela será devolvida ao órgão responsável para que continue a execução da mesma.'
+    msg: 'Ao rejeitar o encerramento da demanda, ela será devolvida ao órgão responsável para que continue a execução da mesma.',
+    estado: Estados.EXECUCAO
   }
 ]
 
 export const BUTTONS_REPLANEJAMENTO = [
   { name:'Autorizar', 
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg: 'Ao autorizar o replanejamento da demanda, ela retornará para o órgão responsável elabora um novo planejamento.'
+    msg: 'Ao autorizar o replanejamento da demanda, ela retornará para o órgão responsável elabora um novo planejamento.',
+    estado: Estados.PLANEJAMENTO
   },
   { name:'Rejeitar', 
     color: DEFAULT_SECOND_BUTTON_COLOR,
-    msg: 'Ao rejeitar o replanejamento da demanda, ela será devolvida ao órgaõ responsável para que continue a execução da mesa..'
+    msg: 'Ao rejeitar o replanejamento da demanda, ela será devolvida ao órgão responsável para que continue a execução da mesma.',
+    estado: Estados.EXECUCAO
   }
 ]
 
@@ -121,7 +125,8 @@ export const BUTTONS_AVALIACAO = [
   { 
     name:'Concluir demanda', 
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg:''
+    msg:'Ao concluir a demanda, ela será alterada para o estado concluído e não poderá mais sofrer alterações.',
+    estado: Estados.CONCLUIDO
   },
 ]
 
