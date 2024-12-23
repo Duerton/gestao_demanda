@@ -4,7 +4,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import FooterDefault from "@/components/FooterDefault";
 import { BUTTONS_PLANEJAMENTO, BUTTONS_PLANEJAMENTO_AUTORIZACAO, BUTTONS_PLANEJAMENTO_EDIT } from "@/utils/constants";
 import CompanyList from "../../components/CompanyList";
-import { getCadastro, handleSubmitCadastro } from "@/fetch/fetchCadastro";
+import { getCadastro, handleSubmit } from "@/fetch/fetchCadastro";
 import HeaderName from "@/components/HeaderComponent";
 import { Estados } from "@/utils/types";
 import UploadSingleFile from "@/components/UploadSingleFile";
@@ -31,8 +31,9 @@ async function Planejamento ( {
 
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <form action={handleSubmitCadastro}>
+    <form action={handleSubmit}>
       <HeaderName name={header}/>
+      <input type='hidden' value={id} name="id"></input>
       <input type='hidden' value={estado} name="estado"></input>
       <Grid container spacing={2}>
         <Grid size={12}>

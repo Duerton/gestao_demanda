@@ -47,6 +47,18 @@ export async function getListaDemanda() {
   return data
 }
 
+export async function handleSubmit(form: FormData) {
+  const data = Object.fromEntries(form.entries())
+
+  await fetch(`http://localhost:3333/demanda/${data.id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+
+  redirect('/listademanda');
+}
+
 export async function handleEstado(estado: string, data: Demanda, input: string) {
   const newData = {...data, estado: estado}
 
