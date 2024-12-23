@@ -78,17 +78,20 @@ export const BUTTONS_EXECUCAO = [
   { 
     name:'Concluir execução', 
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg: 'Ao concluir a execução da demanda, ela será devolvida para a secretaria de gestão avaliar os resultados obtidos.'
+    msg: 'Ao concluir a execução da demanda, ela será devolvida para a secretaria de gestão avaliar os resultados obtidos.',
+    estado: Estados.AVALIACAO
   },
   { 
     name:'Solicitar interrupção', 
     color: DEFAULT_SECOND_BUTTON_COLOR,
-    msg: ''
+    msg: '',
+    estado: Estados.ENCERRAMENTO
   },
   { 
     name:'Solicitar replanejamento',
     color: DEFAULT_THIRD_BUTTON_COLOR,
-    msg: ''
+    msg: '',
+    estado: Estados.REPLANEJAMENTO
   }
 ]
 
@@ -134,6 +137,7 @@ export const statusRoute = (param: string) : string => {
     case Estados.AVALIACAO: {return 'avaliacao'}
     case Estados.REPLANEJAMENTO: {return 'avaliacao'}
     case Estados.ENCERRAMENTO: {return 'avaliacao'}
+    case Estados.CONCLUIDO: {return 'concluido'}
     default : return ''
   }
 }

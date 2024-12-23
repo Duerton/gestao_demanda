@@ -23,5 +23,6 @@ export enum Estados {
   ENCERRAMENTO = 'Encerramento',
   AUTORIZACAO = 'Autorização',
   EXECUCAO = 'Execução',
-  ENCERRADO = 'Encerrado'
+  ENCERRADO = 'Encerrado',
+  CONCLUIDO = 'Concluído'
 }
