@@ -54,4 +54,6 @@ export async function handleEstado(estado: string, data: Demanda, input: string)
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newData)
   })
+
+  redirect('/listademanda');
 }

@@ -38,16 +38,20 @@ const FooterDefault: React.FC<FooterDefault> = ({buttons, data}) => {
     router.push(`/listademanda`);
   };
 
+  const isModal = buttons[0].estado !== '' ? false : true
+  const listButtons = isModal ? buttons.slice(1) : buttons
+
   return (
     <Box display="flex" justifyContent="left" mt={3} mb={3}>
+      {isModal &&
       <Button 
         variant="contained"
         type='submit'
         sx={{ mx: 1, marginLeft : '0px', backgroundColor: buttons[0].color }}
       >
         {buttons[0].name}
-      </Button>
-      {buttons.slice(1).map( button => {
+      </Button>}
+      {listButtons.map( button => {
         return (
           <Box key={button.name}>
             <Button 
