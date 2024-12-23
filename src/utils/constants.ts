@@ -34,11 +34,21 @@ export const buttonsCadastro = [
   }
 ]
 
+export const BUTTONS_PLANEJAMENTO_EDIT = [
+  { 
+    name:'Salvar', 
+    color: DEFAULT_FIRST_BUTTON_COLOR,
+    msg:'',
+    estado: Estados.PLANEJAMENTO
+  },
+]
+
 export const BUTTONS_PLANEJAMENTO = [
   { 
     name:'Enviar planejamento', 
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg:''
+    msg:'Ao enviar para o planejamento a demanda ficará em estado de autorização para prosseguimento',
+    estado: Estados.AUTORIZACAO
   },
 ]
 
@@ -46,17 +56,20 @@ export const BUTTONS_PLANEJAMENTO_AUTORIZACAO = [
   { 
     name:'Autorizar',
     color: DEFAULT_FIRST_BUTTON_COLOR,
-    msg: 'Ao autorizar a execução da demanda, será enviado um memorando para o órgão responsável dando inicio ao prazo para execução.'
+    msg: 'Ao autorizar a execução da demanda, será enviado um memorando para o órgão responsável dando inicio ao prazo para execução.',
+    estado: Estados.EXECUCAO
   },
   {
     name:'Encerrar', 
     color: DEFAULT_SECOND_BUTTON_COLOR,
-    msg: 'Ao encerrar a demanda não será mais possível executar nenhuma ação sobre ela'
+    msg: 'Ao encerrar a demanda não será mais possível executar nenhuma ação sobre ela',
+    estado: Estados.ENCERRADO
   },
   { 
     name:'Replanejar',
     color: DEFAULT_THIRD_BUTTON_COLOR,
-    msg: 'Ao replanejar a demanda, ela será devolvida para o órgão responsável e retornará para o passo anterior, aguardando um novo planejamento.'
+    msg: 'Ao replanejar a demanda, ela será devolvida para o órgão responsável e retornará para o passo anterior, aguardando um novo planejamento.',
+    estado: Estados.PLANEJAMENTO
   }
 ]
 

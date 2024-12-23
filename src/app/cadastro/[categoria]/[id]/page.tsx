@@ -2,6 +2,7 @@ import FooterDefault from "@/components/FooterDefault";
 import HeaderName from "@/components/HeaderComponent";
 import { getCadastro, handleSubmitCadastro } from "@/fetch/fetchCadastro";
 import { buttonsCadastro, DEFAULT_BUTTONS } from "@/utils/constants";
+import { Estados } from "@/utils/types";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 // import { DateField } from "@mui/x-date-pickers";
@@ -14,6 +15,7 @@ async function Cadastro ( {
 
   const {categoria, id} = (await params)
   const isEdit = categoria === 'action'
+  const estado = Estados.ANALISE
   
   const data = id === 'new' ? {} : await getCadastro(id);
 
@@ -22,6 +24,7 @@ async function Cadastro ( {
     <form action={handleSubmitCadastro}>
       <HeaderName name={'Cadastro de demanda'}/>
       <input type='hidden' value={id} name="id"></input>
+      <input type='hidden' value={estado} name="estado"></input>
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField 
