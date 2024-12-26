@@ -21,26 +21,10 @@ import {
   GridRowModel,
   GridRowEditStopReasons,
   GridSlotProps,
+  useGridApiRef
 } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
-
-const initialRows: GridRowsProp = [
-  {
-    id: 1,
-    cnpj: '11111111',
-    name: "padaria",
-  },
-  {
-    id: 2,
-    cnpj: '22222222',
-    name: "quitanda",
-  },
-  {
-    id: 3,
-    cnpj: '33333333',
-    name: "sorveteria",
-  },
-];
+import { Dispatch, SetStateAction, useState } from 'react';
 
 declare module '@mui/x-data-grid' {
   interface ToolbarPropsOverrides {
@@ -51,39 +35,44 @@ declare module '@mui/x-data-grid' {
   }
 }
 
-function EditToolbar(props: GridSlotProps['toolbar']) {
-  const { setRows, setRowModesModel } = props;
-  const [id, setId] = React.useState(initialRows[initialRows.length - 1].id);
-
-  const generateId = () => {
-    const newId =  id + 1;
-    setId(newId)
-    return newId;
-  }
-
-  const handleClick = () => {
-    const id = generateId();
-    setRows((oldRows) => [
-      ...oldRows,
-      { id, name: '', age: '', role: '', isNew: true },
-    ]);
-    setRowModesModel((oldModel) => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
-    }));
-  };
-
-  return (
-    <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-        Adicionar empresa
-      </Button>
-    </GridToolbarContainer>
-  );
+interface FullFeaturedCrudGridProps {
+  rows: GridRowsProp,
+  setRows: Dispatch<SetStateAction<GridRowsProp>>
 }
 
-export default function FullFeaturedCrudGrid() {
-  const [rows, setRows] = React.useState(initialRows);
+export default function FullFeaturedCrudGrid( {rows, setRows}: FullFeaturedCrudGridProps ) {
+
+  function EditToolbar(props: GridSlotProps['toolbar']) {
+    const { setRows, setRowModesModel } = props;
+    const [id, setId] = useState(rows.length ? rows[rows.length - 1].id : 0);
+  
+    const generateId = () => {
+      const newId =  id + 1;
+      setId(newId)
+      return newId;
+    }
+  
+    const handleClick = () => {
+      const id = generateId();
+      setRows((oldRows) => [
+        ...oldRows,
+        { id, nome: '', isNew: true },
+      ]);
+      setRowModesModel((oldModel) => ({
+        ...oldModel,
+        [id]: { mode: GridRowModes.Edit, fieldToFocus: 'nome' },
+      }));
+    };
+  
+    return (
+      <GridToolbarContainer>
+        <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+          Adicionar empresa
+        </Button>
+      </GridToolbarContainer>
+    );
+  }
+  
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
 
   const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
@@ -101,7 +90,7 @@ export default function FullFeaturedCrudGrid() {
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+    setRows(rows?.filter((row) => row.id !== id));
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
@@ -110,16 +99,16 @@ export default function FullFeaturedCrudGrid() {
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
     });
 
-    const editedRow = rows.find((row) => row.id === id);
+    const editedRow = rows?.find((row) => row.id === id);
     if (editedRow!.isNew) {
-      setRows(rows.filter((row) => row.id !== id));
+      setRows(rows?.filter((row) => row.id !== id));
     }
   };
 
   const processRowUpdate = (newRow: GridRowModel) => {
-    const updatedRow = { ...newRow, isNew: false };
-    setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
-    return updatedRow;
+      const updatedRow = { ...newRow, isNew: false };
+      setRows(rows?.map((row) => (row.id === newRow.id ? updatedRow : row)));
+      return updatedRow;
   };
 
   const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
@@ -136,7 +125,7 @@ export default function FullFeaturedCrudGrid() {
       headerAlign: 'left',
       align: 'left'
     },
-    { field: 'name', headerName: 'Name', width: 250, editable: true },
+    { field: 'nome', headerName: 'Nome', width: 250, editable: true },
     {
       field: 'actions',
       type: 'actions',
@@ -188,6 +177,11 @@ export default function FullFeaturedCrudGrid() {
       },
     },
   ];
+
+  
+  const apiRef = useGridApiRef();
+
+  console.log('apiRef',apiRef.current.state)
 
   return (
     <Box

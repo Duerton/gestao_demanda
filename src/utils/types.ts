@@ -1,3 +1,5 @@
+import { GridRowsProp } from "@mui/x-data-grid"
+
 export interface Demanda {
   num_demanda: number,
   data_registro: string,
@@ -12,7 +14,14 @@ export interface Demanda {
   orgao: string,
   descricao: string,
   id: number,
-  estado: Estados
+  estado: Estados,
+  orcamentoprevisto?: '',
+  prazoexecucao?: '',
+  acao?: '',
+  qtdfuncionarios?: 0, 
+  qtdetapas?: 0,
+  responsavel?: '',
+  empresas?: GridRowsProp
 }
 
 export enum Estados {
@@ -25,4 +34,11 @@ export enum Estados {
   EXECUCAO = 'Execução',
   ENCERRADO = 'Encerrado',
   CONCLUIDO = 'Concluído'
+}
+
+export interface RowGridEmpresas {
+  id: number,
+  cnpj: string,
+  nome: string,
+  isNew?: boolean
 }
