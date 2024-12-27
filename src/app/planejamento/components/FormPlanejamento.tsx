@@ -37,9 +37,6 @@ const FormPlanejamento = ( { values, id, categoria } : FormPlanejamentoProps) =>
   const header = isAutorizacao ? 'Autorização de execução': 'Planejamento da demanda';
   const estado = Estados.PLANEJAMENTO
 
-  console.log('data', data)
-  console.log('rowsJSON', JSON.parse(JSON.stringify(rows)))
-
   return (
     // <LocalizationProvider dateAdapter={AdapterDayjs}>
     <form action={handleSubmit}>

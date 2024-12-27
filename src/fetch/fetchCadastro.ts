@@ -49,7 +49,7 @@ export async function getListaDemanda() {
 
 export async function handleSubmit(form: FormData) {
   const data = Object.fromEntries(form.entries())
-
+  
   await fetch(`http://localhost:3333/demanda/${data.id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
@@ -69,4 +69,29 @@ export async function handleEstado(estado: string, data: Demanda, input: string)
   })
 
   redirect('/listademanda');
+}
+
+export async function getField( field : string) {
+  const response = await fetch(`http://localhost:3333/{${field}}/`, {
+    next: {
+      tags: ['get-fornecedor']
+    }
+  })
+
+  const data = await response.json()
+  return data
+
+}
+
+export async function saveFieldsConfig(fields : FormData) {
+  const data = Object.fromEntries(fields.entries())
+  // TODO dividir data em 3 requisições ou preparar um endpoint para salvar todos os campos de uma vez
+  
+  await fetch(`http://localhost:3333/fornecedor}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+
+  // redirect('/listademanda');
 }

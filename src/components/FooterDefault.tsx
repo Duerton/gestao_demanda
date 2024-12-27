@@ -15,7 +15,7 @@ interface ButtonProps {
 
 interface FooterDefault {
   buttons: Array<ButtonProps>,
-  data: Demanda
+  data?: Demanda
 }
 
 const FooterDefault: React.FC<FooterDefault> = ({buttons, data}) => {
@@ -38,7 +38,9 @@ const FooterDefault: React.FC<FooterDefault> = ({buttons, data}) => {
     router.push(`/listademanda`);
   };
 
-  const isModal = buttons[0].estado !== '' ? false : true
+  
+  
+  const isModal = buttons[0].msg === ''
   const listButtons = isModal ? buttons.slice(1) : buttons
 
   return (
