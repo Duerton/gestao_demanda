@@ -17,7 +17,6 @@ export async function getCadastro(id: string) {
 export async function handleSubmitCadastro(form: FormData) {
       
   const fields = Object.fromEntries(form.entries())
-  console.log('aqui', fields)
 
   let method = 'POST'
   let address = `http://localhost:3333/demanda`

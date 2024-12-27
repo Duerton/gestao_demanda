@@ -131,7 +131,6 @@ export const BUTTONS_AVALIACAO = [
 ]
 
 export const statusRoute = (param: string) : string => {
-  console.log('param', param);
   
   switch (param) {
     case Estados.ANALISE: {return 'cadastro'}

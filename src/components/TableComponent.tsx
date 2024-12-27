@@ -45,12 +45,9 @@ export default function TableComponents( {rows, setRows, extraColumns}: TableCom
   function EditToolbar(props: GridSlotProps['toolbar']) {
     const { setRows, setRowModesModel } = props;
     const [id, setId] = useState(rows.length ? rows[rows.length - 1].id : 0);
-  
-    console.log('id', id)
 
     const generateId = () => {
       const newId =  id + 1;
-      console.log('newId', newId)
       setId(newId)
       return newId;
     }
@@ -58,7 +55,6 @@ export default function TableComponents( {rows, setRows, extraColumns}: TableCom
     const handleClick = () => {
       const id = generateId();
       setRows((oldRows) => {
-        console.log('oldRows', oldRows)
         if (oldRows)
           return [
             ...oldRows,

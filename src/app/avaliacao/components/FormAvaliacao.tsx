@@ -24,7 +24,6 @@ interface FormAvaliacaoProps {
 const FormAvaliacao = ( { values, id, categoria } : FormAvaliacaoProps) => {
 
   const isEdit = categoria === 'action'
-  console.log(id)
 
   let header = ''
   let buttons = DEFAULT_BUTTONS

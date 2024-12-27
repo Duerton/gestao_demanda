@@ -178,11 +178,6 @@ export default function FullFeaturedCrudGrid( {rows, setRows}: FullFeaturedCrudG
     },
   ];
 
-  
-  const apiRef = useGridApiRef();
-
-  console.log('apiRef',apiRef.current.state)
-
   return (
     <Box
       sx={{
