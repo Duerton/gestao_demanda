@@ -21,7 +21,10 @@ export interface Demanda {
   qtdfuncionarios?: 0, 
   qtdetapas?: 0,
   responsavel?: '',
-  empresas?: GridRowsProp
+  empresas?: GridRowsProp,
+  orcamentoutilizado?: string,
+  etapasconcluidas?: string,
+  
 }
 
 export enum Estados {
@@ -42,3 +45,20 @@ export interface RowGridEmpresas {
   nome: string,
   isNew?: boolean
 }
+
+export interface Columns {
+  field: string,
+  headerName: string,
+  type: string,
+  width: number,
+  editable: boolean,
+  headerAlign: string,
+  align: string
+}
+
+export interface Option { 
+  pagina: string; 
+  href: string; 
+} 
+
+export interface OptionsListProps { options: Option[] }
