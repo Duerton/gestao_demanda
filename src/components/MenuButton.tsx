@@ -11,7 +11,7 @@ const options = [
   { pagina: 'Lista de demandas', href: '/listademanda'}
 ];
 
-export default function LongMenu() {
+export default function MenuButton() {
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

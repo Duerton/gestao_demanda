@@ -6,7 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Link from 'next/link';
 
 const options = [
-  { pagina: 'Conta', href: '/conta' },
+  { pagina: 'Conta', href: '/userconfig' },
   { pagina: 'Configurações', href: '/config'},
   { pagina: 'Sair', href: '/sair'}
 ];
