@@ -3,18 +3,11 @@
 import React from 'react';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid2';
-import { useRouter } from 'next/navigation'
-import { Avatar, Box, IconButton, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
-import SettingsIcon from '@mui/icons-material/Settings';
+import ConfigButton from './ConfigButton';
 
 const Header = () => {
-
-  const router = useRouter()
-
-  const redirectPage = () => {
-    router.push(`/config`)
-  }
 
   return (
       <Box sx={{flexGrow : 1}} mb={'5px'}>
@@ -60,12 +53,7 @@ const Header = () => {
               alignItems="center" 
               minWidth={70}
             >
-              <IconButton 
-                sx={{backgroundColor : 'white'}}
-                onClick={redirectPage}
-              >
-                <SettingsIcon sx={{color: '#9E6EE1'}}/>
-              </IconButton>
+              <ConfigButton/>
             </Grid>
           </Grid>
         </Grid>
