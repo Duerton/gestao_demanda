@@ -28,6 +28,7 @@ async function Cadastro ( {
       <Grid container spacing={2}>
         <Grid size={6}>
           <TextField 
+            required
             fullWidth 
             name="num_demanda" 
             defaultValue={data.num_demanda}
@@ -37,6 +38,7 @@ async function Cadastro ( {
         </Grid>
         <Grid component="div" size={6}>
           <TextField 
+            required
             fullWidth 
             label='Data de registro' 
             name="data_registro" 
@@ -46,6 +48,7 @@ async function Cadastro ( {
         </Grid>
         <Grid size={12} component="div">
           <TextField 
+            required
             fullWidth 
             name="titulo" 
             label='Título' 
@@ -55,7 +58,7 @@ async function Cadastro ( {
         </Grid>
         <Grid component="div" size={4}>
           <Box sx={{ minWidth: 120}} >
-            <FormControl fullWidth>
+            <FormControl fullWidth required>
               <InputLabel id='fornecedor'>Fornecedor</InputLabel>
               <Select
                 id="fornecedor"
@@ -73,6 +76,7 @@ async function Cadastro ( {
         </Grid>
         <Grid component="div" size={4}>
             <TextField 
+              required
               fullWidth 
               label='Data' 
               name="data_data" 
@@ -82,7 +86,7 @@ async function Cadastro ( {
         </Grid>
         <Grid component="div" size={4}>
           <Box sx={{ minWidth: 120}}>
-            <FormControl fullWidth>
+            <FormControl fullWidth required>
               <InputLabel id='prioridade'>Prioridade</InputLabel>
               <Select
                 id="prioridade"
@@ -105,6 +109,7 @@ async function Cadastro ( {
             name="distrito"
             defaultValue={data.distrito}
             disabled={isEdit}
+            required
             />
         </Grid>
         <Grid component="div" size={6}>
@@ -114,6 +119,7 @@ async function Cadastro ( {
             name="bairro"
             defaultValue={data.bairro}  
             disabled={isEdit}
+            required
             />
         </Grid>
         <Grid component="div" size={12}>
@@ -123,11 +129,11 @@ async function Cadastro ( {
             name="logradouro"
             defaultValue={data.logradouro}  
             disabled={isEdit}
-            />
+          />
         </Grid>
         <Grid component="div" size={6}>
           <Box sx={{ minWidth: 120}}>
-            <FormControl fullWidth>
+            <FormControl fullWidth required>
               <InputLabel id='programa'>Programa</InputLabel>
               <Select
                 id="programa"
@@ -145,7 +151,7 @@ async function Cadastro ( {
         </Grid>
         <Grid component="div" size={6}>
           <Box sx={{ minWidth: 120}}>
-            <FormControl fullWidth>
+            <FormControl fullWidth required>
               <InputLabel id='orgaoresponsavel'>Órgão responsável</InputLabel>
               <Select
                 id="orgaoresponsavel"
@@ -153,7 +159,8 @@ async function Cadastro ( {
                 name="orgao"
                 defaultValue={data.orgao || 'verde'}  
                 disabled={isEdit}
-                >
+                
+              >
                 <MenuItem value={1}>Verde</MenuItem>
                 <MenuItem value={2}>Amarelo</MenuItem>
                 <MenuItem value={3}>Vermelho</MenuItem>
@@ -170,7 +177,8 @@ async function Cadastro ( {
             name="descricao"
             defaultValue={data.descricao}  
             disabled={isEdit}
-            />
+            required
+          />
         </Grid>
       </Grid>
       <FooterDefault 
